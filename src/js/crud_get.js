@@ -1,19 +1,29 @@
 var BearApp = React.createClass({
+
 getInitialState: function() {
   return {
     bears: []
   };
 },
 
+loadBearsFromServer: function() {
+  $.ajax({
+    url: this.props.source,
+    type: 'GET',
+    success: function (data) {
+      this.setState({
+        bears:data
+      })
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.source, status, err.toString());
+    }.bind(this)
+  });
+},
+
 componentDidMount: function() {
-  this.serverRequest = $.get(this.props.source, function (result) {
-    console.log(result[0]);
-    var bears = result;
-    console.log(bears);
-    this.setState({
-      bears: bears
-    });
-  }.bind(this));
+  this.loadBearsFromServer();
+  setInterval(this.loadBearsFromServer,1000);
 },
 
 componentWillUnmount: function() {
@@ -22,7 +32,6 @@ componentWillUnmount: function() {
 
 render: function() {
   return (
-
     <div>
       {
         this.state.bears.map(function(bear) {
@@ -37,5 +46,5 @@ render: function() {
 
 ReactDOM.render(
 <BearApp source="http://localhost:3000/api/bears" />,
-document.getElementById('app')
+document.getElementById('get')
 );

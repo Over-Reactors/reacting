@@ -1,14 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <script src="https://fb.me/react-0.14.7.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
   <body>
-    <div id="app"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.min.js"></script>
+    <div id="get"></div>
 
-    <!-- build:js -->
-    <script src="src/Child.js"></script>
-    <script src="src/Parent.js"></script>
-    <script src="src/App.js"></script>
-    <!-- endbuild -->
+    <div id="post"></div>
+
+
+
+<!--build.js-->
+    <script src="src/build.js">
+    </script>
+<!--endbuild-->
+    <script type="text/babel">
+    var BasicInputBox = React.createClass ({
+      render: function (){
+        return (
+         <div>
+           <label>{this.props.label}</label>
+           <br/>
+           <input type="text" onChange={this.props.valChange} value= {this.props.val} />
+           <br/>
+         </div>
+        );
+      }
+     });
+
+     var Contact = React.createClass({
+        getInitialState: function(){
+          return {}
+        },
+
+        submit: function (e){
+          var self
+
+          e.preventDefault()
+          self = this
+
+          // console.log(this.state.name);
+
+          var data = {
+            name: this.state.name,
+            fishPreference: this.state.fishPreference
+          }
+
+          console.log(JSON.stringify(data));
+
+          // Submit form via jQuery/AJAX
+          $.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000/api/bears',
+            data: data,
+            dataType: "json"
+          })
+          .done(function(data) {
+            self.clearForm()
+          })
+          .fail(function(jqXhr) {
+            console.log('failed to register');
+          });
+
+        },
+
+        clearForm: function() {
+          this.setState({
+            name: "",
+            fishPreference: ""
+          });
+        },
+
+        nameChange: function(e){
+          this.setState({name: e.target.value})
+        },
+
+        fishChange: function(e){
+         this.setState({fishPreference: e.target.value})
+        },
+
+        render: function(){
+           return (
+            <form onSubmit={this.submit} >
+              <BasicInputBox label="Name:" valChange={this.nameChange} val={this.state.name}/>
+              <BasicInputBox label="Fish Preference:" valChange={this.fishChange} val={this.state.fishPreference}/>
+              <button type="submit">Submit</button>
+            </form>
+          );
+        }
+    });
+
+    ReactDOM.render(<Contact></Contact>, document.getElementById('post'));
+
+    </script>
   </body>
 </html>
