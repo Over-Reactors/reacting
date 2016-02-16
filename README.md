@@ -98,7 +98,7 @@ will be dynamically displayed in the page. In `textarea` tag, if there is anythi
 
 ### Comparison
 
-From this example, we could find out that in order to achieve same function, AngularJS uses less codes comparing to React. But React have more flexibility than AngularJS, React create class which could include more function to operate and generate data, like we could event input data as markdown.
+From this example, we could find out that in order to achieve same function, AngularJS uses less codes compared to React. React has more flexibility than AngularJS. React has potential to inlude logic to operate and generate data, for example, we could input data as markdown.
 
 # Reference
 https://www.codementor.io/reactjs/tutorial/react-vs-angularjs
