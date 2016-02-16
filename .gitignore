@@ -5,3 +5,4 @@
 db/
 /public/css/style.css
 coverage/
+dist/build/build.min.js
