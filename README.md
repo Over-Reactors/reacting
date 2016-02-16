@@ -1,3 +1,16 @@
+# React CRUD Bears App
+First step, run the back-end server and connect MongoDB datebase:
+```js
+nodemon server/server
+mongod --dbpath=server/db --smallfiles
+```
+Second step, run the front-end server:
+```js
+nodemon server
+```
+Third step, open your browser and enter the url `http://localhost:5000`
+
+
 # AngularJS
 AngularJS initially released in 2009 by google. Right now, Angular is updated to version 2.0.
 AngularJS lets us create dynamic application by extending HTMl attributes.  
