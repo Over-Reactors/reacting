@@ -3,11 +3,11 @@
 var Bear = React.createClass({displayName: "Bear",
   render: function() {
     return (
-      React.createElement("div", {className: "bear"},
-        React.createElement("h2", {className: "bearName"},
+      React.createElement("div", {className: "bear"}, 
+        React.createElement("h2", {className: "bearName"}, 
           "Name: ", this.props.name
-        ),
-        React.createElement("p", null,
+        ), 
+        React.createElement("p", null, 
           "Fish Preference: ", this.props.fishPreferences
         )
       )
@@ -52,21 +52,21 @@ var UpdateBear = React.createClass({displayName: "UpdateBear",
   render: function() {
     return (
 
-      React.createElement("form", {className: "bearUpdate", onSubmit: this.handleSubmit},
+      React.createElement("form", {className: "bearUpdate", onSubmit: this.handleSubmit}, 
         React.createElement("input", {
-          type: "text",
-          placeholder: "Bear Name",
-          value: this.state.name,
+          type: "text", 
+          placeholder: "Bear Name", 
+          value: this.state.name, 
           onChange: this.handleNameChange}
-        ),
+        ), 
         React.createElement("input", {
-          type: "text",
-          placeholder: "Fish Preference",
-          value: this.state.fishPreference,
+          type: "text", 
+          placeholder: "Fish Preference", 
+          value: this.state.fishPreference, 
           onChange: this.handleFishPreferenceChange}
-        ),
+        ), 
         React.createElement("input", {
-          type: "submit",
+          type: "submit", 
           value: "Update"}
         )
       )
@@ -106,15 +106,15 @@ var BearList = React.createClass({displayName: "BearList",
   render: function() {
     var bearNodes = this.props.data.map(function(bear) {
       return (
-        React.createElement("div", {key: bear._id},
-          React.createElement(Bear, {name: bear.name, fishPreferences: bear.fishPreference}),
-          React.createElement(BearDelete, {_id: bear._id}),
+        React.createElement("div", {key: bear._id}, 
+          React.createElement(Bear, {name: bear.name, fishPreferences: bear.fishPreference}), 
+          React.createElement(BearDelete, {_id: bear._id}), 
           React.createElement(UpdateBear, {_id: bear._id, name: bear.name, fishPreference: bear.fishPreference})
         )
       );
     });
     return (
-      React.createElement("div", {className: "bearList"},
+      React.createElement("div", {className: "bearList"}, 
         bearNodes
       )
     );
@@ -144,20 +144,20 @@ var BearForm = React.createClass({displayName: "BearForm",
   },
   render: function() {
     return (
-      React.createElement("form", {className: "bearForm", onSubmit: this.handleSubmit},
-        React.createElement("h2", null, "New Bear"),
+      React.createElement("form", {className: "bearForm", onSubmit: this.handleSubmit}, 
+        React.createElement("h2", null, "New Bear"), 
         React.createElement("input", {
-          type: "text",
-          placeholder: "Bear Name",
-          value: this.state.name,
+          type: "text", 
+          placeholder: "Bear Name", 
+          value: this.state.name, 
           onChange: this.handleNameChange}
-        ),
+        ), 
         React.createElement("input", {
-          type: "text",
-          placeholder: "fish preference",
-          value: this.state.fishPreference,
+          type: "text", 
+          placeholder: "fish preference", 
+          value: this.state.fishPreference, 
           onChange: this.handleFishPreferenceChange}
-        ),
+        ), 
         React.createElement("input", {type: "submit", value: "Post"})
       )
     );
@@ -203,9 +203,9 @@ var BearBox = React.createClass({displayName: "BearBox",
   },
   render: function() {
     return (
-      React.createElement("div", {className: "bearBox"},
-        React.createElement("h1", null, "BEARS"),
-        React.createElement(BearList, {data: this.state.data}),
+      React.createElement("div", {className: "bearBox"}, 
+        React.createElement("h1", null, "BEARS"), 
+        React.createElement(BearList, {data: this.state.data}), 
         React.createElement(BearForm, {onBearSubmit: this.handleBearSubmit})
       )
     );
