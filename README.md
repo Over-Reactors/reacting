@@ -1,5 +1,11 @@
 # React CRUD Bears App
-First step, run the back-end server and connect MongoDB datebase:
+First step, install the dependencies and run gulp:
+```js
+npm install
+gulp
+```
+
+Then, run the back-end server and connect MongoDB datebase:
 ```js
 nodemon server/server
 mongod --dbpath=server/db --smallfiles
